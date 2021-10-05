@@ -2298,6 +2298,187 @@ colour_print("Hello, Reverse", REVERSE)
 colour_print("Hello, Black", BLACK)
 
 
+# In[2]:
+
+
+LOW = 1
+HIGH = 65535
+
+# print("Please think of a number between 1 and 1000")
+# input("Press ENTER to start")
+
+
+def guess_binary(answer, low, high):
+    guesses = 1
+    while True:
+        # print("\tGuessing in the range {} to {}".format(low, high))
+        guess = low + (high - low) // 2
+        # high_low = input("My guess is {}. Should I guess higher or lower? Enter h or l, or c if my guess was correct."
+        #                  .format(guess)).casefold()
+
+        # if high_low == "h":
+        if guess < answer:
+            # I have to guess higher.  The low end of the range becomes 1 greater than the guess.
+            low = guess + 1
+        # elif high_low == "l":
+        elif guess > answer:
+            # I have to guess lower.  The high end of the range becomes 1 less than the guess.
+            high = guess - 1
+        # elif high_low == "c":
+        elif guess == answer:
+            # print("I got it in {} guesses!".format(guesses))
+            # break
+            return guesses
+        # else:
+        #     print("Please enter h, l or c")
+
+        guesses += 1
+
+
+correct_count = 0
+max_guesses = 0
+for number in range(LOW, HIGH + 1):
+    number_of_guesses = guess_binary(number, LOW, HIGH)
+    print("{} guessed in {}".format(number, number_of_guesses))
+
+    if number_of_guesses > max_guesses:
+        max_guesses, correct_count = number_of_guesses, 1
+    elif number_of_guesses == max_guesses:
+        correct_count += 1        
+        
+print("I guessed without being told {} times.Max {} guesses."
+      .format(correct_count, max_guesses))
+
+
+# # Fizzbuzz
+
+# In[14]:
+
+
+def fizz_buzz(number: int) -> str:
+    """
+    Play Fizz buzz
+    
+    :param number: The number to check.
+    :return: 'fizz' if the number is divisible by 3.
+         'buzz' if its's divisible by 5.
+         'fizz buzz' if it's divisible  by both 3 and 5.
+         The number, as a string, otherwise.
+    """
+    if number % 15 == 0:
+        return "fizz buzz"
+    elif number % 3 == 0:
+        return "fizz"
+    elif number % 5 == 0:
+        return "buzz"
+    else:
+        return str(number)
+    
+    
+input("Play Fizz Buzz.   Press ENTER to Start")
+print()
+
+next_number = 0
+while next_number < 99:
+    next_number += 1
+    print(fizz_buzz(next_number))
+    next_number += 1
+    correct_answer = fizz_buzz(next_number)
+    players_answer = input("Your go: ")
+    if players_answer != correct_answer:
+        print("You Lose, The Correct Answer was {}".format(correct_answer))
+        break
+else:
+    print("Well Done, You reached {}".format(next_number))
+
+
+# # star_examples
+
+# In[20]:
+
+
+numbers = (0, 1, 2, 3, 4, 5)
+
+# print(numbers, sep=";")
+# print(*numbers, sep=";")
+# print(0, 1, 2, 3, 4, 5, sep=";")
+
+def test_star(*args):
+    print(args)
+    for x in args:
+        print(x)
+        
+test_star(0, 1, 2, 3, 4, 5)
+
+print()
+test_star()
+
+
+# # Colour_print
+
+# In[28]:
+
+
+import colorama
+
+# Some ANSI escape sequences for colours and effects
+BLACK = '\u001b[30m'
+RED = '\u001b[31m'
+GREEN = '\u001b[32m'
+YELLOW = '\u001b[33m'
+BLUE = '\u001b[34m'
+MAGENTA = '\u001b[35m'
+CYAN = '\u001b[36m'
+WHITE = '\u001b[37m'
+RESET = '\u001b[0m'
+ 
+BOLD = '\u001b[1m'
+UNDERLINE = '\u001b[4m'
+REVERSE = '\u001b[7m'
+
+def colour_print(text: str, *effects: str) -> None:
+    """
+    Print 'text' using the ANSI Sequence to change colour, etc
+    
+    :param text: The text to print.
+    :param effect: The effect we want. One of the constants
+        define at the start of this module.
+    """
+    effect_string = "".join(effects)
+    output_string = "{0}{1}{2}".format(effect_string, text, RESET)
+    print(output_string)
+
+colorama.init()
+colour_print("Hello, Red", RED)
+colour_print("Hello, Red in Bold", RED, BOLD )
+# test that the colour was reset
+print("This should be in the default terminal colour")
+colour_print("Hello, Blue", BLUE)
+colour_print("Hello, Blue reversed", BLUE, REVERSE)
+colour_print("Hello, Blue reversed and underlined", BLUE, REVERSE, UNDERLINE)
+colour_print("Hello, Yellow", YELLOW)
+colour_print("Hello, Yellow bold", YELLOW, BOLD)
+colour_print("Hello, Bold", BOLD)
+colour_print("Hello, Underline", UNDERLINE)
+colour_print("Hello, Reverse", REVERSE)
+colour_print("Hello, Black", BLACK)
+colorama.deinit()
+
+
+# # parameters_types
+
+# In[31]:
+
+
+def func(p1, p2, *args, k, **kwargs):
+    print("positional-or-keyword:...{}, {}".format(p1, p2))
+    print("var-positional (*args):..{}".format(args))
+    print("keyword:.................{}".format(k))
+    print("var-keyword:.............{}".format(kwargs))
+    
+func(1, 2, 3, 4, 5, 9, k=6, key1=7, key2=8)
+
+
 # In[ ]:
 
 
