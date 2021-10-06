@@ -2479,6 +2479,185 @@ def func(p1, p2, *args, k, **kwargs):
 func(1, 2, 3, 4, 5, 9, k=6, key1=7, key2=8)
 
 
+# # dict_intro
+
+# In[6]:
+
+
+vehicles = {
+    'dream': 'Honda 250T',
+    'roadster': 'BMW R1100',
+    'er5': 'Kawasaki ER5',
+    'can-am': 'Bombardier can-am 250',
+    'virago': 'Yahama XV250',
+    'tenere': 'Yahama XT650',
+    'jimny': 'Suzuki Jimny 1.5',
+    'fiesta': 'Ford Fiesta Ghia 1.4',
+}
+
+my_car = vehicles['fiesta']
+print(my_car)
+
+commuter = vehicles['virago']
+print(commuter)
+
+learner = vehicles.get("ER5")
+print(learner)
+
+
+# In[18]:
+
+
+vehicles = {
+    'dream': 'Honda 250T',
+    'roadster': 'BMW R1100',
+    'er5': 'Kawasaki ER5',
+    'can-am': 'Bombardier can-am 250',
+    'virago': 'Yahama XV250',
+    'tenere': 'Yahama XT650',
+    'jimny': 'Suzuki Jimny 1.5',
+    'fiesta': 'Ford Fiesta Ghia 1.4',
+    'roadster': 'Triumph Street Triple',
+}
+
+vehicles["starfighter"] = "Lockheed F-104"
+vehicles["learjet"] = "Bombardier Learjet 75"
+vehicles["toy"] = "Glider"
+
+# Upgrade the Virago
+vehicles["virago"] = "Yamaha XV535"
+# delete vehicles["f1"]
+result = vehicles.pop("fi", "You wish! Sell the Learjet and you might afford a racing car.")
+print(result)
+plane = vehicles.pop("learjet")
+print(plane)
+
+bike = vehicles.pop("tenere", "not present")
+print(bike)
+print()
+# for key in vehicles:
+#    print(key, vehicles[key], sep=", ")
+for key, value in vehicles.items():
+    print(key, vehicles[key], sep=", ")
+
+
+# # buy_computer_dict
+
+# In[1]:
+
+
+availabe_parts = {"1": "computer", 
+                  "2": "moniter", 
+                  "3": "keyboard",
+                  "4": "mouse",
+                  "5": "mouse pad",
+                  "6": "HDMI Cable",
+                  "7": "DVD drive"
+                 }
+
+current_choice = None
+while current_choice != "0":
+    if current_choice in availabe_parts:
+        chosen_part = availabe_parts[current_choice]
+        print(f"Adding {chosen_part}")
+        
+    current_choice = input("> ")
+
+
+# In[5]:
+
+
+availabe_parts = {"1": "computer", 
+                 "2": "moniter", 
+                 "3": "keyboard",
+                 "4": "mouse",
+                 "5": "mouse pad",
+                 "6": "HDMI Cable",
+                 "7": "DVD drive"
+                }
+
+current_choice = None
+while current_choice != "0":
+   if current_choice in availabe_parts:
+       chosen_part = availabe_parts[current_choice]
+       print(f"Adding {chosen_part}")
+   else:
+       print("Please add options from the list")
+       for key, value in availabe_parts.items():
+           print(f"{key}: {value}")
+       print("0: to finish")
+                 
+   current_choice = input("> ")
+
+
+# In[6]:
+
+
+available_parts = {"1": "computer",
+                   "2": "monitor",
+                   "3": "keyboard",
+                   "4": "mouse",
+                   "5": "hdmi cable",
+                   "6": "dvd drive",
+                   }
+ 
+current_choice = None
+computer_parts = []  # create an empty list
+ 
+while current_choice != "0":
+    if current_choice in available_parts:
+        chosen_part = available_parts[current_choice]
+        if chosen_part in computer_parts:
+            # it's already in, so remove it
+            print(f"Removing {chosen_part}")
+            computer_parts.remove(chosen_part)
+        else:
+            print(f"Adding {chosen_part}")
+            computer_parts.append(chosen_part)
+        print(f"Your list now contains: {computer_parts}")
+    else:
+        print("Please add options from the list:")
+        for key, value in available_parts.items():
+            print(f"{key}: {value}")
+        print("0: to finish")
+ 
+    current_choice = input("> ")
+
+
+# In[7]:
+
+
+available_parts = {"1": "computer",
+                   "2": "monitor",
+                   "3": "keyboard",
+                   "4": "mouse",
+                   "5": "hdmi cable",
+                   "6": "dvd drive",
+                   }
+
+current_choice = None
+computer_parts = {}     # create an empty dictionary
+
+while current_choice != "0":
+    if current_choice in available_parts:
+        chosen_part = available_parts[current_choice]
+        if current_choice in computer_parts:
+            # it's already in, so remove it
+            print(f"Removing {chosen_part}")
+            computer_parts.pop(current_choice)
+        else:
+            print(f"Adding {chosen_part}")
+            computer_parts[current_choice] = chosen_part
+        print(f"Your dictionary now contains: {computer_parts}")
+    else:
+        print("Please add options from the list")
+        for key, value in available_parts.items():
+            print(f"{key}: {value}")
+        print("0: to finish")
+
+    current_choice = input("> ")
+
+
 # In[ ]:
 
 
